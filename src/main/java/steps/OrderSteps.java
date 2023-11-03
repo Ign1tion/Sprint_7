@@ -50,11 +50,6 @@ public class OrderSteps {
                 .body(track)
                 .when()
                 .put(BASE_URL + CANCEL_ORDER);
-         /*      .then()
-               .assertThat()
-               .statusCode(SC_OK)
-              .and()
-              .body("ok", is(true));  */
     }
 
 

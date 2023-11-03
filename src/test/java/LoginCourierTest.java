@@ -9,18 +9,18 @@ import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.CoreMatchers.is;
 
-public class LoginCourierTest extends TestData {
+public class LoginCourierTest {
     @Before
     @Description("Creating courier before login")
     public void courierCreation() {
-        createCourier(LOGIN, PASSWORD, FIRST_NAME);
+        createCourier(TestData.LOGIN, TestData.PASSWORD, TestData.FIRST_NAME);
     }
 
     @Test
     @DisplayName("valid courier authentication")
     @Description("Should return SC 200 OK and \"id\" in body")
     public void loginCourierTest() {
-        loginCourier(LOGIN, PASSWORD)
+        loginCourier(TestData.LOGIN, TestData.PASSWORD)
                 .then()
                 .assertThat()
                 .statusCode(SC_OK)
@@ -32,7 +32,7 @@ public class LoginCourierTest extends TestData {
     @DisplayName("courier authentication with null in \"login\" field")
     @Description("Should response with SC 400 bad request and body message \"Недостаточно данных для входа\"")
     public void authenticationWithNullIntLoginField() {
-        loginCourier(null, PASSWORD)
+        loginCourier(null, TestData.PASSWORD)
                 .then()
                 .assertThat()
                 .statusCode(SC_BAD_REQUEST)
@@ -44,7 +44,7 @@ public class LoginCourierTest extends TestData {
     @DisplayName("courier authentication with null in \"password\" field")
     @Description("Should response with SC 400 bad request and body message \"Недостаточно данных для входа\"")
     public void authenticationWithNullInPasswordField() {
-        loginCourier(LOGIN, null)
+        loginCourier(TestData.LOGIN, null)
                 .then()
                 .assertThat()
                 .statusCode(SC_BAD_REQUEST)
@@ -55,7 +55,7 @@ public class LoginCourierTest extends TestData {
     @DisplayName("courier authentication with incorrect password field")
     @Description("should return SC 404 not found and body message \"Учетная запись не найдена\"")
     public void authenticationWithWrongPassword(){
-        loginCourier(LOGIN, PASSWORD + "s")
+        loginCourier(TestData.LOGIN, TestData.PASSWORD + "s")
         .then()
                 .assertThat()
                 .statusCode(SC_NOT_FOUND)
@@ -67,7 +67,7 @@ public class LoginCourierTest extends TestData {
     @DisplayName("courier authentication with incorrect login field")
     @Description("should return SC 404 not found and body message \"Учетная запись не найдена\"")
     public void authenticationWithWrongLogin() {
-        loginCourier(LOGIN + "s", PASSWORD)
+        loginCourier(TestData.LOGIN + "s", TestData.PASSWORD)
                 .then()
                 .assertThat()
                 .statusCode(SC_NOT_FOUND)
@@ -76,6 +76,6 @@ public class LoginCourierTest extends TestData {
     }
     @After
     public void clear() {
-        deleteCourier(LOGIN, PASSWORD);
+        deleteCourier(TestData.LOGIN, TestData.PASSWORD);
     }
 }

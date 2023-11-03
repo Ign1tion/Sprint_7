@@ -5,7 +5,7 @@ import static steps.OrderSteps.getOrdersList;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-public class GetOrdersListTest extends TestData {
+public class GetOrdersListTest {
     @Test
     @DisplayName("Get orders list")
     public void getOrdersListTest() {

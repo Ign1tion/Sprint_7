@@ -45,8 +45,6 @@ public class CourierSteps {
         Courier loginCourier = new Courier(login, password);
         Integer courierId = given()
                 .header("content-type", "application/json")
-                //.filter(new RequestLoggingFilter())
-                // .filter(new ResponseLoggingFilter())
                 .body(loginCourier)
                 .when()
                 .post(BASE_URL + LOGIN_COURIER)
@@ -54,15 +52,8 @@ public class CourierSteps {
                 .extract().body().path("id");
         given()
                 .header("content-type", "application/json")
-                //.filter(new RequestLoggingFilter())
-                //.filter(new ResponseLoggingFilter())
-                // .when()
                 .delete(String.format(BASE_URL + COURIER_ID, courierId));
-        //  .then()
-        // .assertThat()
-        // .statusCode(SC_OK)
-        // .and()
-        // .body("ok", is(true));
+
 
     }
 

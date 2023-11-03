@@ -15,12 +15,12 @@ import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 @RunWith(Parameterized.class)
-public class CreateOrderTest extends TestData {
+public class CreateOrderTest {
     private static final List<Order> ORDERS = List.of(
-            new Order(FIRST_NAME, LAST_NAME, ADDRESS, METRO_STATION, PHONE, RENT_TIME, DELIVERY_DATE, COMMENT, COLOR_GREY),
-            new Order(FIRST_NAME, LAST_NAME, ADDRESS, METRO_STATION, PHONE, RENT_TIME, DELIVERY_DATE, COMMENT, COLOR_BLACK),
-            new Order(FIRST_NAME, LAST_NAME, ADDRESS, METRO_STATION, PHONE, RENT_TIME, DELIVERY_DATE, COMMENT, BOTH_COLORS),
-            new Order(FIRST_NAME, LAST_NAME, ADDRESS, METRO_STATION, PHONE, RENT_TIME, DELIVERY_DATE, COMMENT));
+            new Order(TestData.FIRST_NAME, TestData.LAST_NAME, TestData.ADDRESS, TestData.METRO_STATION, TestData.PHONE, TestData.RENT_TIME, TestData.DELIVERY_DATE, TestData.COMMENT,TestData.COLOR_GREY),
+            new Order(TestData.FIRST_NAME, TestData.LAST_NAME, TestData.ADDRESS, TestData.METRO_STATION, TestData.PHONE, TestData.RENT_TIME, TestData.DELIVERY_DATE, TestData.COMMENT, TestData.COLOR_BLACK),
+            new Order(TestData.FIRST_NAME, TestData.LAST_NAME, TestData.ADDRESS, TestData.METRO_STATION, TestData.PHONE, TestData.RENT_TIME, TestData.DELIVERY_DATE, TestData.COMMENT, TestData.BOTH_COLORS),
+            new Order(TestData.FIRST_NAME, TestData.LAST_NAME, TestData.ADDRESS, TestData.METRO_STATION, TestData.PHONE, TestData.RENT_TIME, TestData.DELIVERY_DATE, TestData.COMMENT));
     private final Order order;
 
     public CreateOrderTest(Order order) {
@@ -42,11 +42,11 @@ public class CreateOrderTest extends TestData {
                 .body("track", notNullValue())
                 .and()
                 .statusCode(SC_CREATED);
-        setTrack(response.asString());
+        TestData.setTrack(response.asString());
     }
 
     @After
     public void clear() {
-        cancelOrder(getTrack());
+        cancelOrder(TestData.getTrack());
     }
 }
